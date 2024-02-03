@@ -2,8 +2,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import CurrentWeather from '../components/CurrentWeather';
 import FiveDayForecast from '../components/FiveDayForecast';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faMoonCloud} from '@fortawesome/free-solid-svg-icons';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
@@ -13,6 +11,21 @@ function App() {
   const [unit, setUnit] = useState('metric');
   const [currentLocationData, setCurrentLocationData] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
+  const [error, setError] = useState(null);
+
+  // const fetchWeatherDataByCity = useCallback(async (city) => {
+  //   try {
+  //     const apiKey = '089bda8bfa1263ac61930ef2ef39379c';
+  //     const response = await fetch(
+  //       `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`
+  //     );
+  //     const data = await response.json();
+  //     setWeatherData(data);
+  //   } catch (error) {
+  //     console.error('Error fetching weather data:', error);
+  //   }
+  // }, [unit]);
+
 
   const fetchWeatherDataByCity = useCallback(async (city) => {
     try {
@@ -20,12 +33,22 @@ function App() {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`
       );
+  
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`City not found: ${response.statusText}`);
+      }
+  
       const data = await response.json();
       setWeatherData(data);
+      setError(null); // Clear any previous errors
     } catch (error) {
-      console.error('Error fetching weather data:', error);
+      console.error('Error fetching weather data:', error.message);
+      setWeatherData(null);
+      setError('City not found. Please enter a valid city name.');
     }
   }, [unit]);
+
 
   const getCurrentLocationWeather = useCallback(async () => {
     if (navigator.geolocation) {
@@ -84,6 +107,11 @@ function App() {
               </button>
             </div>
           </div>
+          {(error && (
+        <div className="mt-3 alert alert-danger text-center" role="alert">
+          {error}
+        </div>
+      ))}
           {(currentLocationData || (weatherData && city === currentLocationData?.name)) && (
             <div className="mt-5 text-center">
             
