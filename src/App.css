@@ -1,4 +1,5 @@
 /* src/App.css */
+
 .top-bar {
   display: flex;
   align-items: center;
@@ -16,7 +17,7 @@ img{
 }
 body {
   font-family: 'Arial', sans-serif;
-  background-image: url('C:\Users\Varun Mithyantha\Desktop\Projects\weather-app\public\sky.jpg'); /* Replace 'your-background-image.jpg' with the path to your image */
+  background-image: url('C:\Users\Varun Mithyantha\Desktop\Projects\weather-app\Weather-App\src\components\sky.jpg'); 
   background-size: cover;
   background-repeat: no-repeat;
 }
