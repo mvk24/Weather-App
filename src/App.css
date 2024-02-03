@@ -21,7 +21,6 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
-/* src/App.css */
 
 .text-left {
   text-align: left !important;
@@ -51,6 +50,3 @@ body {
     width: 38%;
   }
 }
-
-
-/* Add additional styling as needed */

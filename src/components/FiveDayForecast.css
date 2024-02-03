@@ -35,11 +35,9 @@
   }
 }
 
-
-/* src/components/FiveDayForecast.css */
 .button-bar {
   display: flex;
-  justify-content: space-between; /* Spread buttons at the beginning and end of the flex container */
+  justify-content: space-between; 
   margin-bottom: 20px;
 }
 
