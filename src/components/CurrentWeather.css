@@ -1,0 +1,21 @@
+/* src/components/CurrentWeather.css */
+.current-weather-container {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .current-weather-container img {
+    width: 80px;
+    height: 80px;
+    margin-top: 10px;
+  }
+
+@media (max-width: 768px) {
+  .current{
+      color: black !important;
+}  
+}
